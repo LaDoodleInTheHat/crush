@@ -1,0 +1,31 @@
+# systemd unit: keeps crush running, restarts it if it crashes, starts it on boot.
+#
+#   sudo cp deploy/crush.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now crush
+#   journalctl -u crush -f          # watch the logs
+
+[Unit]
+Description=crush web proxy
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+# Change to your instance's login user (ec2-user on Amazon Linux, ubuntu on Ubuntu).
+User=ec2-user
+WorkingDirectory=/opt/crush
+# CRUSH_PASSWORD (and optionally PORT / HOST) live in this file, not in the repo.
+EnvironmentFile=/etc/crush.env
+# `which node` tells you the right path if this one is wrong.
+ExecStart=/usr/bin/node server.js
+Restart=always
+RestartSec=2
+
+# Light sandboxing: crush never needs to write to disk.
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

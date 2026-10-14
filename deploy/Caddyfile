@@ -1,0 +1,13 @@
+# Caddy puts HTTPS in front of crush, with a free certificate it renews by
+# itself. Needs a domain name pointing at your instance's public IP.
+#
+#   sudo cp deploy/Caddyfile /etc/caddy/Caddyfile   (then edit the domain)
+#   sudo systemctl reload caddy
+#
+# With Caddy in front, set HOST=127.0.0.1 in /etc/crush.env so crush itself
+# is only reachable through Caddy.
+
+proxy.example.com {
+	encode zstd gzip
+	reverse_proxy 127.0.0.1:8080
+}

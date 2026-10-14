@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>crush</title>
+  <link rel="icon" href="/_/icon.svg">
+  <link rel="stylesheet" href="/_/browser.css">
+</head>
+<body>
+  <header class="chrome">
+    <div class="tabstrip">
+      <div class="tabs" id="tabs" role="tablist" aria-label="Tabs"></div>
+      <button class="icon-btn" id="new-tab" title="New tab (Alt+T)" aria-label="New tab">
+        <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+      </button>
+    </div>
+
+    <nav class="toolbar">
+      <button class="icon-btn" id="back" title="Back" aria-label="Back" disabled>
+        <svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      </button>
+      <button class="icon-btn" id="forward" title="Forward" aria-label="Forward" disabled>
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+      <button class="icon-btn" id="reload" title="Reload" aria-label="Reload">
+        <svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg>
+      </button>
+
+      <form class="omnibox" id="omnibox" autocomplete="off">
+        <svg class="omnibox-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+        <input id="address" type="text" spellcheck="false" autocapitalize="off"
+               placeholder="Search or type a web address" aria-label="Address">
+      </form>
+
+      <button class="icon-btn" id="popout" title="Open this page on its own, outside the frame" aria-label="Pop out">
+        <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+      </button>
+    </nav>
+    <div class="progress" id="progress"></div>
+  </header>
+
+  <main class="views" id="views">
+    <section class="newtab" id="newtab">
+      <div class="brand">
+        <span class="face" aria-hidden="true">(｡•̀ᴗ-)✧</span>
+        <h1>crush</h1>
+      </div>
+      <form class="search" id="search" autocomplete="off">
+        <input id="search-input" type="text" placeholder="Search the web or enter an address" aria-label="Search">
+        <select id="engine" aria-label="Search engine">
+          <option value="https://html.duckduckgo.com/html/?q=%s">DuckDuckGo</option>
+          <option value="https://search.brave.com/search?q=%s">Brave</option>
+          <option value="https://www.bing.com/search?q=%s">Bing</option>
+          <option value="https://www.google.com/search?q=%s">Google</option>
+        </select>
+      </form>
+      <div class="shortcuts" id="shortcuts"></div>
+    </section>
+    <!-- one <iframe> per open tab gets added here by browser.js -->
+  </main>
+
+  <script type="module" src="/_/browser.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "crush",
+  "version": "1.0.0",
+  "description": "A small web proxy with a browser UI, built on Node.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20.11"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "parse5-html-rewriting-stream": "^8.0.1"
+  }
+}
